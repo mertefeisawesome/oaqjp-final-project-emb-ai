@@ -13,7 +13,9 @@ def render_homepage():
 def emotion_detection():
     text_to_analyze = str(request.args.get("textToAnalyze"))
     response = emotion_detector(text_to_analyze)
-    print(response)
+
+    if response["dominant_emotion"] == None:
+        return "Invalid text! Please try again!"
 
     return response["dominant_emotion"]
 
